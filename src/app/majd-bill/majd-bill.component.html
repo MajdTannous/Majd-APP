@@ -1,0 +1,53 @@
+
+
+<div class="form-group col-xs-3 ">
+<h1>
+<p class="label label-success">
+   Add Item
+</p>
+</h1>
+item name:   <input type="text"  class="form-control" #item (keyup)="handleKeyUp($event)"><br>
+item amount: <input type="number"  class="form-control" #amount (keyup)="handleKeyUp($event)"><br>
+item price:  <input type="number"  class="form-control" #price (keyup)="handleKeyUp($event)"><br>
+<button class="btn btn-primary" (click)="addNewItem(item.value,amount.value,price.value);item.value='';amount.value='';price.value=''" >
+add new Item</button>
+</div>
+<div class="form-group col-xs-4 ">
+<h1>
+<p class="label label-success">
+   Show Items
+</p>
+</h1>
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>item name</th>
+    <th>amount</th>
+    <th>price</th>
+  </tr>
+</thead>
+<tbody *ngFor="let bill of bills">
+<tr>
+<td>{{bill.getitemname()}} </td>
+<td ><input  class="form-control" style="width: 45px ;height:25px" #am value='{{bill.getitemamount()}}' /> </td>
+<td>{{bill.getitemprice()}}$ </td>
+<td>  <button class="label label-danger" (click)="removeItem(bill)"> delete </button> </td>
+<td>  <button class="label label-danger" (click)="updateamount(bill,am.value)"> update </button> </td>
+
+</tr>
+</tbody>
+</table>
+
+     <div>
+      total bill price:
+        <input type="text" class="form-control" style="width: 150px" value='{{ gettotalprice() }}$' disabled/> 
+    </div>
+    <h3>
+  <p class="label label-info">
+  Number of Items =
+  <span class="badge">
+  {{bills.length}}
+  </span>
+  </p>
+</h3>
+</div>
